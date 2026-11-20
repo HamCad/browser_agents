@@ -1,11 +1,18 @@
 #!/usr/bin/env python3
-"""Standalone DAF 1206 XFA filler. Needs only pypdf (+ cryptography or pycryptodome for AES).
-usage: python fill_daf1206.py blank.pdf filled.pdf"""
-import sys, re
+"""DAF 1206 XFA filler - true incremental update. Needs pypdf + (cryptography or pycryptodome).
+
+Changes ONLY the XFA 'datasets' stream. The original file bytes are kept verbatim; one
+re-encrypted object and a new xref section are appended (the same way Adobe Reader saves
+a filled form). Preserved: every XFA packet incl. 'form', /Perms (usage rights), the
+original encryption dictionary/key/permissions, and all other structure.
+
+usage: python fill_daf1206_incremental.py blank.pdf filled.pdf
+"""
+import sys, re, os, zlib, struct, hashlib
 import xml.etree.ElementTree as ET
 from xml.sax.saxutils import escape
-from pypdf import PdfReader, PdfWriter
-from pypdf.generic import ArrayObject, NameObject
+from pypdf import PdfReader
+from pypdf._crypt_providers import aes_cbc_encrypt
 
 DATA = {
   "award": "Sample Civilian of the Year (SYNTHETIC)",
@@ -22,39 +29,75 @@ DATA = {
   "p2SpecificAccomplishments": "- Synthetic continuation bullet one\n- Synthetic continuation bullet two",
 }
 
-r = PdfReader(sys.argv[1])
-if r.is_encrypted:
+src, dst = sys.argv[1], sys.argv[2]
+orig = open(src, "rb").read()
+r = PdfReader(src)
+encrypted = r.is_encrypted
+if encrypted:
     r.decrypt("")
-w = PdfWriter(clone_from=r)
-root = w._root_object
-xfa = root["/AcroForm"]["/XFA"]
+tr = r.trailer
 
-new = ArrayObject()
-for i in range(0, len(xfa), 2):
-    name, ref = xfa[i], xfa[i + 1]
-    if str(name) == "form":            # saved form state -> drop so Reader re-merges from datasets
-        continue
-    if str(name) == "datasets":
-        s = ref.get_object()
-        xml = s.get_data().decode("utf-8")
-        for k, v in DATA.items():
-            # match empty <k/> OR existing <k>...</k>
-            pat = re.compile(r"<%s\s*/>|<%s\s*>.*?</%s\s*>" % ((re.escape(k),) * 3), re.S)
-            if not pat.search(xml):
-                print("WARNING: field not in datasets:", k); continue
-            xml = pat.sub(lambda m: f"<{k}>{escape(v)}</{k}>", xml, count=1)
-        ET.fromstring(xml)              # must still be valid XML
-        s.set_data(xml.encode("utf-8"))
-    new += [name, ref]
-root["/AcroForm"][NameObject("/XFA")] = new
+# 1. locate datasets stream and build new XML
+xfa = tr["/Root"]["/AcroForm"]["/XFA"]
+ref = next(xfa[i + 1] for i in range(0, len(xfa), 2) if str(xfa[i]) == "datasets")
+num, gen = ref.idnum, ref.generation
+xml = ref.get_object().get_data().decode("utf-8")
+for k, v in DATA.items():
+    pat = re.compile(r"<%s\s*/>|<%s\s*>.*?</%s\s*>" % ((re.escape(k),) * 3), re.S)
+    if not pat.search(xml):
+        print("WARNING: field not in datasets:", k); continue
+    xml = pat.sub(lambda m: f"<{k}>{escape(v)}</{k}>", xml, count=1)
+ET.fromstring(xml)                                       # still valid XML
+if xml == ref.get_object().get_data().decode("utf-8"):    # nothing to change -> exact copy
+    open(dst, "wb").write(orig)
+    print("no field values changed; wrote byte-identical copy")
+    sys.exit(0)
 
-for key in ("/Perms",):                 # usage-rights signature is invalid after editing
-    if key in root:
-        del root[key]
-w.write(sys.argv[2])
+# 2. compress, then encrypt with the file's own key (AESV2 per-object key, PDF spec 7.6.2)
+body = zlib.compress(xml.encode("utf-8"))
+if encrypted:
+    enc = r._encryption
+    ed = tr["/Encrypt"]
+    if int(ed["/V"]) != 4 or str(ed["/CF"][str(ed["/StmF"])]["/CFM"]) != "/AESV2":
+        sys.exit("unsupported crypt filter (script handles AESV2 / R4)")
+    k = hashlib.md5(enc._key + struct.pack("<I", num)[:3] + struct.pack("<I", gen)[:2] + b"sAlT").digest()[:16]
+    pad = 16 - len(body) % 16
+    iv = os.urandom(16)
+    body = iv + aes_cbc_encrypt(k, iv, body + bytes([pad]) * pad)
 
-# verify
-x = PdfReader(sys.argv[2]).trailer["/Root"]["/AcroForm"]["/XFA"]
-d = {str(x[i]): x[i + 1].get_object().get_data() for i in range(0, len(x), 2)}
-f = ET.fromstring(d["datasets"]).find(".//form1")
-print("packets:", list(d), "| filled:", sum(bool((c.text or "").strip()) for c in f), "/", len(f))
+# 3. append object + xref stream (xref streams are never encrypted)
+out = bytearray(orig)
+if not out.endswith(b"\n"):
+    out += b"\n"
+obj_off = len(out)
+out += b"%d %d obj\n<</Filter/FlateDecode/Length %d>>stream\n" % (num, gen, len(body)) + body + b"\nendstream\nendobj\n"
+
+prev = int(re.findall(rb"startxref\s+(\d+)", orig)[-1])
+size = max(int(tr["/Size"]), num + 1)
+xref_num = size; size += 1
+xref_off = len(out)
+rows = [(num, struct.pack(">BIH", 1, obj_off, gen)), (xref_num, struct.pack(">BIH", 1, xref_off, 0))]
+rows.sort()
+index = b" ".join(b"%d 1" % n for n, _ in rows)
+xdata = zlib.compress(b"".join(row for _, row in rows))
+root = tr.raw_get("/Root"); info = tr.raw_get("/Info") if "/Info" in tr else None
+encref = tr.raw_get("/Encrypt") if encrypted else None
+ids = tr["/ID"]
+idhex = b"[<%s><%s>]" % (ids[0].original_bytes.hex().encode(), ids[1].original_bytes.hex().encode())
+d = b"<</Type/XRef/Size %d/Index[%s]/W[1 4 2]/Root %d %d R" % (size, index, root.idnum, root.generation)
+if info is not None: d += b"/Info %d %d R" % (info.idnum, info.generation)
+if encref is not None: d += b"/Encrypt %d %d R" % (encref.idnum, encref.generation)
+d += b"/ID%s/Prev %d/Filter/FlateDecode/Length %d>>" % (idhex, prev, len(xdata))
+out += b"%d 0 obj\n" % xref_num + d + b"stream\n" + xdata + b"\nendstream\nendobj\nstartxref\n%d\n%%%%EOF\n" % xref_off
+open(dst, "wb").write(out)
+
+# 4. verify
+r2 = PdfReader(dst)
+if r2.is_encrypted: r2.decrypt("")
+x = r2.trailer["/Root"]["/AcroForm"]["/XFA"]
+pk = {str(x[i]): x[i + 1].get_object().get_data() for i in range(0, len(x), 2)}
+f = ET.fromstring(pk["datasets"]).find(".//form1")
+print("original bytes preserved:", bytes(out[:len(orig)]) == orig)
+print("still encrypted:", PdfReader(dst).is_encrypted, "| /Perms kept:", "/Perms" in r2.trailer["/Root"])
+print("packets:", list(pk))
+print("filled:", sum(bool((c.text or "").strip()) for c in f), "/", len(f))
