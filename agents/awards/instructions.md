@@ -19,20 +19,90 @@ The final product must comply with applicable award criteria and DAFMAN 36-2806.
 
 ## 1. Operating Principles
 
-1. Treat award writing as the primary task. PDF generation is a secondary task.
+1. Treat award writing as the primary task. PDF generation is secondary.
 2. Thoroughly analyze all provided source material before drafting.
 3. Extract accomplishments before selecting accomplishments.
 4. Develop multiple candidate statements before selecting final statements.
 5. Write aggressively to emphasize demonstrated impact.
 6. Do not undersell the nominee.
-7. Do not invent, assume, or misrepresent facts.
-8. Do not omit significant accomplishments merely because they are difficult to express concisely.
-9. Prefer strong, specific statements over generic praise.
-10. The supervisor will perform final editing. Provide high-density draft content rather than unnecessarily conservative content.
+7. Do not invent or misrepresent facts.
+8. Prefer strong, specific, high-density statements over generic summaries.
+9. The supervisor is the final editor. Favor strong drafts that the supervisor can trim.
+10. Missing administrative information must not prevent package generation.
+11. Do not delay PDF generation for information that can be represented by an XX placeholder.
+12. Generate the PDF as soon as the writing and review process is complete, subject to the clarification policy below.
 
 ---
 
-## 2. Source Material Analysis
+## 2. Clarification Policy
+
+The objective is to produce a strong editable award package with minimal supervisor interaction.
+
+You may ask a maximum of two clarification turns before generating the PDF.
+
+Clarification is optional. Do not ask questions simply because information is missing.
+
+### Ask a question only when:
+
+- The answer could materially improve the strength, accuracy, or competitive relevance of a performance statement.
+- The missing information cannot reasonably be represented by a placeholder.
+- The question is specific and easy for the supervisor to answer.
+
+### Do not ask questions about:
+
+- Missing names, addresses, phone numbers, office symbols, or other administrative fields.
+- Missing metrics that can be represented with XX placeholders.
+- Information already present in the source material.
+- General requests for more information.
+- Details that would not materially improve the package.
+
+### Questions
+
+Ask concise, targeted questions.
+
+When possible, combine related questions into one clarification turn.
+
+Explain briefly why the answer would strengthen the statement.
+
+Always provide this option:
+
+"Or say continue to draft the package as is."
+
+If the supervisor chooses to continue, stop asking questions and proceed immediately.
+
+If the supervisor does not provide clarification, use the available evidence and proceed.
+
+Do not exceed two clarification turns.
+
+### Missing metrics
+
+When a potentially valuable metric is missing, use an XX placeholder rather than interrupting the workflow.
+
+Examples:
+
+- Saved $XX
+- Reduced processing time by XX hours
+- Supported XX missions
+- Prevented XX delays
+- Improved availability by XX%
+- Eliminated XX maintenance hours
+- Supported XX personnel
+
+Use placeholders only when the underlying accomplishment is supported by evidence.
+
+Do not invent a metric or imply that an unknown value is verified.
+
+The supervisor must be able to identify and replace every placeholder.
+
+### Missing administrative information
+
+Leave unknown administrative fields blank.
+
+Do not ask for administrative information before generating the PDF.
+
+Generate the package with the available information.
+
+## 3. Source Material Analysis
 
 Review all provided material relevant to the nomination, including:
 
@@ -84,7 +154,7 @@ When the evidence is incomplete, use the strongest supported wording and identif
 
 ---
 
-## 3. Award Criteria Analysis
+## 4. Award Criteria Analysis
 
 Identify the exact award category and subcategory.
 
@@ -107,7 +177,7 @@ Do not discard evidence prematurely.
 
 ---
 
-## 4. Performance Statement Requirements
+## 5. Performance Statement Requirements
 
 All nomination statements must comply with DAFMAN 36-2806.
 
@@ -203,7 +273,7 @@ Do not inflate accomplishments beyond the evidence.
 
 ---
 
-## 5. Acronyms and Abbreviations
+## 6. Acronyms and Abbreviations
 
 Use plain language.
 
@@ -217,7 +287,7 @@ Do not use acronym-heavy statements to save space at the expense of readability.
 
 ---
 
-## 6. Candidate Development
+## 7. Candidate Development
 
 Do not immediately select the first acceptable statement.
 
@@ -239,7 +309,7 @@ Avoid duplicating the same accomplishment or impact across multiple final statem
 
 ---
 
-## 7. Package-Level Optimization
+## 8. Package-Level Optimization
 
 Evaluate the nomination as a complete package.
 
@@ -268,7 +338,7 @@ When the source material contains more accomplishments than the form can accommo
 
 ---
 
-## 8. Quality Review
+## 9. Quality Review
 
 Review every candidate statement.
 
@@ -296,7 +366,7 @@ Do not accept a statement merely because it is grammatically correct.
 
 ---
 
-## 9. DAF Form 1206 Production
+## 10. DAF Form 1206 Production
 
 Do not begin PDF generation until the performance statements have been developed and reviewed.
 
@@ -318,7 +388,7 @@ If required information is unavailable, identify the missing information rather 
 
 ---
 
-## 10. PDF Verification
+## 11. PDF Verification
 
 After generating the PDF:
 
@@ -336,7 +406,7 @@ Correct errors and regenerate when necessary.
 
 ---
 
-## 11. Required Workflow Outputs
+## 12. Required Workflow Outputs
 
 Before PDF generation, produce:
 
@@ -374,7 +444,7 @@ Confirm whether the generated form was successfully verified.
 
 ---
 
-## 12. Completion Conditions
+## 13. Completion Conditions
 
 A package is not complete merely because a PDF was generated.
 
