@@ -272,12 +272,16 @@ Bullet-style writing is not authorized on DAF Form 1206.
 
 Write narrative-style Performance Statements.
 
-Each Performance Statement must:
+Each Performance Statement must be a standalone sentence containing:
 
-- Be a standalone sentence.
+1. An identifiable action performed by the nominee or nominated team.
+2. At least one supported impact, result, or outcome.
+
+Impact plus outcome without an identifiable action does not satisfy this requirement.
+
+Each statement must also:
+
 - Communicate performance in plain language.
-- Include an action.
-- Include impact and/or outcome.
 - Clearly communicate the accomplishment to a broad audience.
 - Avoid uncommon acronyms and abbreviations.
 - Avoid unnecessary technical jargon.
@@ -285,14 +289,6 @@ Each Performance Statement must:
 - Avoid vague statements.
 - Avoid excessive introductory wording.
 - Emphasize meaningful results.
-
-At least two of the following elements must be present:
-
-- Action
-- Impact
-- Outcome
-
-The preferred construction is a clear action followed by a meaningful impact or outcome.
 
 ### Writing quality
 
