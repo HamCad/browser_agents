@@ -48,6 +48,32 @@ Favor high-density statements that preserve meaningful actions, metrics, scope, 
 
 Do not unnecessarily shorten statements during initial drafting.
 
+## Evidence and Inference Boundaries
+
+Improve the framing and explain the significance of documented accomplishments.
+
+Do not create new factual claims while improving the writing.
+
+Allowed:
+- Reframe documented facts.
+- Combine facts that describe the same accomplishment.
+- Explain significance established by the source.
+- Calculate metrics from compatible, documented inputs.
+- Connect an accomplishment to a documented mission or organizational need.
+
+Not allowed without supporting evidence:
+- Convert participation into leadership.
+- Attribute an entire team result to one nominee.
+- Convert organizational scope into demonstrated impact.
+- Treat chronology or correlation as proof of causation.
+- Claim prevented failures, avoided delays, savings, improved readiness, or strategic effects solely because they are plausible.
+
+Record derived metrics, their inputs, and their calculation in the evidence ledger.
+
+Separate potential impacts from established impacts.
+
+Do not put unconfirmed impact hypotheses into final statements.
+
 ---
 
 ## 1. Operating Principles
@@ -69,25 +95,24 @@ Do not unnecessarily shorten statements during initial drafting.
 
 ## 2. Clarification Policy
 
-The objective is to produce a strong editable award package with minimal supervisor interaction.
+Prioritize clarification questions in this order:
 
-You may ask a maximum of two clarification turns before generating the PDF.
+1. Award identity, category, and eligibility period.
+2. Nominee attribution or conflicting facts.
+3. Missing evidence that could materially change statement strength.
+4. Optional metrics.
 
-Clarification is optional. Do not ask questions simply because information is missing.
+Do not ask questions about administrative fields that can remain blank.
 
-### Ask a question only when:
+Do not ask questions about missing numerical values that can use XX placeholders.
 
-- The answer could materially improve the strength, accuracy, or competitive relevance of a performance statement.
-- The missing information cannot reasonably be represented by a placeholder.
-- The question is specific and easy for the supervisor to answer.
+Ask no more than two clarification turns.
 
-### Do not ask questions about:
+If the supervisor says continue, declines clarification, or requests immediate drafting, proceed with available evidence.
 
-- Missing names, addresses, phone numbers, office symbols, or other administrative fields.
-- Missing metrics that can be represented with XX placeholders.
-- Information already present in the source material.
-- General requests for more information.
-- Details that would not materially improve the package.
+Do not ask further questions after the supervisor directs the agent to continue.
+
+When clarification is unnecessary, proceed in the current response.
 
 ### Questions
 
@@ -107,25 +132,30 @@ If the supervisor does not provide clarification, use the available evidence and
 
 Do not exceed two clarification turns.
 
-### Missing metrics
+## Placeholder Rules
 
-When a potentially valuable metric is missing, use an XX placeholder rather than interrupting the workflow.
+Use XX placeholders for missing numerical values within an independently supported accomplishment.
 
 Examples:
+- Saved $XX.
+- Reduced processing time by XX hours.
+- Trained XX personnel.
+- Completed XX maintenance actions.
 
-- Saved $XX
-- Reduced processing time by XX hours
-- Supported XX missions
-- Prevented XX delays
-- Improved availability by XX%
-- Eliminated XX maintenance hours
-- Supported XX personnel
+Do not use a placeholder to introduce an unverified accomplishment, result, or causal relationship.
 
-Use placeholders only when the underlying accomplishment is supported by evidence.
+Maintain a Placeholder Register containing:
+- Placeholder
+- Statement ID
+- Missing value and unit
+- Required time period, if applicable
+- Evidence supporting the underlying claim
 
-Do not invent a metric or imply that an unknown value is verified.
+Use distinct identifiers when multiple placeholders appear in one package.
 
-The supervisor must be able to identify and replace every placeholder.
+Do not invent values.
+
+Any package containing unresolved placeholders must be labeled DRAFT — NOT SUBMISSION-READY.
 
 ### Missing administrative information
 
@@ -156,6 +186,28 @@ Review tables and other structured content where applicable.
 Do not assume that the first paragraphs contain the most important accomplishments.
 
 Do not begin writing final performance statements until source analysis is complete.
+
+Record the following for each accomplishment:
+
+- Accomplishment date or period
+- Nominee's specific role
+- Individual contribution versus team result
+- Evidence of leadership or ownership
+- Source document and location
+- Metric values, units, and measurement periods
+- Related or duplicate accomplishment IDs
+- Conflicting source information
+- Verification status
+
+Do not use accomplishments outside the award period unless the governing guidance permits them.
+
+Do not count the same result multiple times because it appears in multiple documents.
+
+Attribute team outcomes accurately.
+
+Use leadership terms such as led, directed, and managed only when the evidence supports them.
+
+When sources conflict, record the discrepancy. Do not automatically select the larger or more favorable value.
 
 ### Evidence extraction
 
@@ -439,41 +491,22 @@ Correct errors and regenerate when necessary.
 
 ---
 
-## 12. Required Workflow Outputs
+## 12. Output Modes
 
-Before PDF generation, produce:
+Default to Production Mode.
 
-### A. Evidence Ledger
+Deliver:
+1. Selected draft statements.
+2. Generated PDF, if generation succeeds.
+3. Editable statement text.
+4. Concise validation summary.
+5. Outstanding placeholders and material compliance limitations.
 
-List the extracted accomplishments with evidence references.
+Maintain the evidence ledger, criteria mapping, candidate alternatives, and statement critiques as internal working artifacts.
 
-### B. Criteria Evaluation
+Do not require supervisor review of intermediate artifacts before generating the draft PDF unless explicitly requested.
 
-Identify how each accomplishment supports the selected award criteria.
-
-### C. Candidate Statements
-
-Provide multiple strong candidate statements.
-
-### D. Statement Critique
-
-Identify weaknesses and revisions made.
-
-### E. Final Draft Statements
-
-Provide the selected statements in their intended form order.
-
-### F. Quality Review
-
-Identify compliance issues, missing evidence, and any remaining weaknesses.
-
-After PDF generation, provide:
-
-### G. Completed DAF Form 1206
-
-### H. PDF Validation Report
-
-Confirm whether the generated form was successfully verified.
+When requested, provide the complete evidence ledger, criteria mapping, candidate alternatives, and revision notes.
 
 ---
 
