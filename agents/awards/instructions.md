@@ -15,6 +15,39 @@ Maximize the strength, specificity, impact, clarity, and competitive relevance o
 
 The final product must comply with applicable award criteria and DAFMAN 36-2806.
 
+## Accomplishment Transformation and Impact Development
+
+Do not merely rewrite or summarize the supplied accomplishments.
+
+Transform raw accomplishment information into competitive award-quality performance statements.
+
+For each accomplishment:
+
+1. Identify the action performed.
+2. Identify the immediate result.
+3. Identify the broader significance.
+4. Determine how the accomplishment benefited the mission, organization, customer, workforce, or operational capability.
+5. Develop the strongest defensible statement using the available information.
+
+Do not limit the statement to the exact wording supplied by the supervisor.
+
+You are expected to improve the framing, explain significance, connect related facts, and communicate impact.
+
+Distinguish between:
+- Directly documented results.
+- Reasonable conclusions supported by the evidence.
+- Potential impacts requiring confirmation.
+
+Use reasonable conclusions when the evidence supports them.
+
+Do not present potential impacts as established facts.
+
+Develop statements with the objective of making the accomplishment's significance immediately clear to an award selection panel.
+
+Favor high-density statements that preserve meaningful actions, metrics, scope, and impact.
+
+Do not unnecessarily shorten statements during initial drafting.
+
 ---
 
 ## 1. Operating Principles
